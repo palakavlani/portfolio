@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palak Avlani | The Developer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Outfit:wght@300;400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <style>
+        /* --- THEME VARIABLES --- */
+        :root {
+            --bg-body: #080314;       /* Deep Violet/Black */
+            --bg-sidebar: #0f0518;    /* Slightly lighter */
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --accent-primary: #e879f9; /* Soft Neon Pink */
+            --accent-secondary: #c084fc; /* Lavender */
+            --accent-gold: #fbbf24;    /* Gold for highlights */
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-glass: 1px solid rgba(255,255,255,0.08);
+            --glow: 0 0 20px rgba(232, 121, 249, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 90% 10%, rgba(192, 132, 252, 0.15), transparent 30%),
+                              radial-gradient(circle at 10% 90%, rgba(232, 121, 249, 0.1), transparent 30%);
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 300px;
+            height: 100vh;
+            background: var(--bg-sidebar);
+            border-right: var(--border-glass);
+            position: fixed;
+            top: 0; left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+            z-index: 100;
+        }
+
+        .profile-img-box {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            margin-bottom: 25px;
+            box-shadow: var(--glow);
+        }
+
+        /* THE NEW MONOGRAM AVATAR */
+        .profile-img {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(to bottom right, #2d1b4e, #0f0518);
+            border: 4px solid var(--bg-sidebar);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Italiana', serif;
+            font-size: 3.5rem;
+            color: var(--text-main);
+            text-shadow: 0 0 10px var(--accent-secondary);
+        }
+
+        .sidebar h2 { 
+            font-family: 'Italiana', serif; 
+            font-size: 1.8rem; 
+            margin-bottom: 5px; 
+            color: var(--text-main);
+        }
+        .sidebar p { 
+            color: var(--accent-primary); 
+            font-size: 0.85rem; 
+            margin-bottom: 40px; 
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu { width: 100%; }
+        .nav-item {
+            display: block;
+            padding: 12px 25px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: 0.3s;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .nav-item:hover {
+            background: rgba(232, 121, 249, 0.1);
+            color: var(--accent-primary);
+        }
+        .nav-item ion-icon { margin-right: 12px; vertical-align: middle; }
+
+        .social-row { margin-top: auto; display: flex; gap: 20px; }
+        .social-row a { color: var(--text-muted); font-size: 1.4rem; transition: 0.3s; }
+        .social-row a:hover { color: var(--accent-primary); transform: scale(1.1); text-shadow: var(--glow); }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            margin-left: 300px;
+            flex: 1;
+            padding: 80px 100px;
+        }
+
+        section { margin-bottom: 120px; scroll-margin-top: 80px; }
+        
+        .section-title {
+            font-family: 'Italiana', serif;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(to right, #fff, #e879f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Hero */
+        .hero h1 { 
+            font-family: 'Italiana', serif;
+            font-size: 5rem; 
+            line-height: 1.1; 
+            margin-bottom: 15px; 
+            font-weight: 400;
+        }
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--accent-secondary);
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+        }
+        
+        .hero p {
+            color: var(--text-muted); 
+            max-width: 600px; 
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* --- SKILLS & PILLS --- */
+        .stack-category { margin-bottom: 40px; }
+        .stack-category h3 { 
+            color: var(--text-main); 
+            font-size: 1.2rem; 
+            margin-bottom: 15px; 
+            font-weight: 600;
+            border-left: 3px solid var(--accent-primary);
+            padding-left: 15px;
+        }
+        .pill-container { display: flex; flex-wrap: wrap; gap: 12px; }
+        .tech-pill {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+        .tech-pill:hover {
+            border-color: var(--accent-primary);
+            color: #fff;
+            background: rgba(232, 121, 249, 0.15);
+            transform: translateY(-2px);
+            box-shadow: var(--glow);
+        }
+
+        /* --- EXPERIENCE & TIMELINE --- */
+        .timeline { 
+            position: relative; 
+            border-left: 2px solid rgba(255,255,255,0.05); 
+            margin-left: 10px; 
+            padding-left: 40px; 
+        }
+        .timeline-item { margin-bottom: 50px; position: relative; }
+        .timeline-dot {
+            width: 14px; height: 14px; background: var(--bg-body);
+            border: 3px solid var(--accent-primary);
+            border-radius: 50%; position: absolute; left: -48px; top: 6px;
+            box-shadow: var(--glow);
+        }
+        .timeline-date { 
+            font-size: 0.85rem; 
+            color: var(--accent-secondary); 
+            margin-bottom: 5px; 
+            display: block; 
+            font-weight: 600; 
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .timeline-title { font-size: 1.4rem; margin-bottom: 5px; color: #fff; font-weight: 600; }
+        .timeline-subtitle { font-size: 1rem; color: var(--text-muted); margin-bottom: 15px; font-style: italic; }
+        .timeline-desc li { 
+            color: var(--text-muted); 
+            font-size: 0.95rem; 
+            margin-bottom: 8px; 
+            margin-left: 18px; 
+            line-height: 1.6;
+        }
+
+        /* --- PROJECTS CARDS --- */
+        .project-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+        .project-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            border: var(--border-glass);
+            padding: 35px;
+            border-radius: 20px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .project-card:hover { 
+            border-color: var(--accent-primary); 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+        }
+        .project-header { display: flex; justify-content: space-between; margin-bottom: 15px; align-items: center; }
+        .project-header h3 { font-size: 1.5rem; font-family: 'Outfit'; }
+        
+        .project-tech { 
+            font-size: 0.85rem; 
+            color: var(--accent-primary); 
+            margin-bottom: 20px; 
+            display: block; 
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Soft Skills Grid */
+        .soft-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .soft-skill-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(251, 191, 36, 0.15); /* Subtle Gold */
+            padding: 25px;
+            border-radius: 16px;
+        }
+        .soft-skill-card h4 { color: var(--accent-gold); margin-bottom: 15px; font-size: 1.1rem; }
+        .soft-skill-card li { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 10px; list-style: none; position: relative; padding-left: 20px; }
+        .soft-skill-card li::before { content: '✦'; position: absolute; left: 0; color: var(--accent-gold); font-size: 0.8rem; }
+
+        /* Button */
+        .btn-resume {
+            display: inline-block; padding: 14px 35px; 
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            color: #fff;
+            border-radius: 50px; text-decoration: none; font-weight: 600; margin-top: 40px;
+            box-shadow: var(--glow); 
+            transition: 0.3s;
+        }
+        .btn-resume:hover { transform: translateY(-3px); filter: brightness(1.1); }
+
+        /* Mobile */
+        @media (max-width: 900px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; padding: 20px; flex-direction: row; justify-content: space-between; border-bottom: var(--border-glass); border-right: none; }
+            .profile-img-box { width: 60px; height: 60px; margin-bottom: 0; }
+            .sidebar h2, .sidebar p, .nav-menu, .social-row { display: none; }
+            .main-content { margin-left: 0; padding: 60px 25px; }
+            .hero h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="profile-img-box">
+            <div class="profile-img">PA</div>
+        </div>
+        <h2>Palak Avlani</h2>
+        <p>Java Backend Developer</p>
+
+        <nav class="nav-menu">
+            <a href="#home" class="nav-item"><ion-icon name="home-outline"></ion-icon> Home</a>
+            <a href="#skills" class="nav-item"><ion-icon name="sparkles-outline"></ion-icon> Skills</a>
+            <a href="#experience" class="nav-item"><ion-icon name="briefcase-outline"></ion-icon> Experience</a>
+            <a href="#education" class="nav-item"><ion-icon name="school-outline"></ion-icon> Education</a>
+            <a href="#projects" class="nav-item"><ion-icon name="layers-outline"></ion-icon> Projects</a>
+            <a href="#contact" class="nav-item"><ion-icon name="mail-outline"></ion-icon> Contact</a>
+        </nav>
+
+        <div class="social-row">
+            <a href="https://www.linkedin.com/in/palak-avlani-0652b123a/" target="_blank"><ion-icon name="logo-linkedin"></ion-icon></a>
+            <a href="mailto:palakavlani03@gmail.com"><ion-icon name="mail-outline"></ion-icon></a>
+            <a href="tel:+919499728047"><ion-icon name="call-outline"></ion-icon></a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <section id="home" class="hero">
+            <h1>Hi, I'm Palak Avlani.</h1>
+            <div class="hero-subtitle">Software Engineer | Java Backend Specialist</div>
+            
+            <p>
+                I am a passionate developer focused on understanding the core concepts of engineering rather than mugging them up. 
+                Currently working as a <strong>Software Trainee Engineer</strong>, building scalable backend systems, secure APIs, and robust architectures.
+            </p>
+
+            <a href="./assets/resume.pdf" class="btn-resume" download>
+                Download Resume <ion-icon name="arrow-down-outline" style="vertical-align: middle; margin-left: 5px;"></ion-icon>
+            </a>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">Technical Arsenal</h2>
+            
+            <div class="stack-category">
+                <h3>☕ Backend Engineering (Core)</h3>
+                <div class="pill-container">
+                    <div class="tech-pill">Java (8, 11, 17, 21)</div>
+                    <div class="tech-pill">Spring Boot 3</div>
+                    <div class="tech-pill">Spring Security</div>
+                    <div class="tech-pill">Spring Data JPA</div>
+                    <div class="tech-pill">Hibernate</div>
+                    <div class="tech-pill">Microservices</div>
+                    <div class="tech-pill">RESTful APIs</div>
+                </div>
+            </div>
+
+            <div class="stack-category">
+                <h3>🗄️ Data & Infrastructure</h3>
+                <div class="pill-container">
+                    <div class="tech-pill">MySQL</div>
+                    <div class="tech-pill">PostgreSQL</div>
+                    <div class="tech-pill">Redis</div>
+                    <div class="tech-pill">RabbitMQ</div>
+                    <div class="tech-pill">Git</div>
+                    <div class="tech-pill">Maven</div>
+                    <div class="tech-pill">Postman</div>
+                </div>
+            </div>
+
+            <div class="stack-category">
+                <h3>🤖 Additional Skills</h3>
+                <div class="pill-container">
+                    <div class="tech-pill">Python (Pandas)</div>
+                    <div class="tech-pill">C++</div>
+                    <div class="tech-pill">HTML5 / CSS3</div>
+                    <div class="tech-pill">AI/ML Basics</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 60px;">
+                <h2 class="section-title" style="font-size: 2rem;">Business Soft Skills</h2>
+                <div class="soft-skills-grid">
+                    <div class="soft-skill-card">
+                        <h4>Leadership & Strategy</h4>
+                        <ul>
+                            <li>Team Coordination & Collaboration</li>
+                            <li>Creative Problem Solving</li>
+                            <li>Decision-Making</li>
+                        </ul>
+                    </div>
+                    <div class="soft-skill-card">
+                        <h4>Communication</h4>
+                        <ul>
+                            <li>Strong Professional Communication</li>
+                            <li>Business Presentation Skills</li>
+                            <li>Spontaneous Speaking</li>
+                        </ul>
+                    </div>
+                    <div class="soft-skill-card">
+                        <h4>Management</h4>
+                        <ul>
+                            <li>Quality Management & Detail Oriented</li>
+                            <li>Time Management</li>
+                            <li>Task Prioritization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <span class="timeline-dot" style="background: #22c55e; border-color: #22c55e; box-shadow: 0 0 10px #22c55e;"></span>
+                    <span class="timeline-date">Jan 12, 2026 - Present</span>
+                    <h3 class="timeline-title">Software Trainee Engineer</h3>
+                    <div class="timeline-subtitle">Forge Digital</div>
+                    <ul class="timeline-desc">
+                        <li>Developing robust backend solutions using Java and Spring Boot.</li>
+                        <li>Engaging in full-cycle software development and system architecture design.</li>
+                        <li>Implementing advanced Java concepts in a production environment.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-dot"></span>
+                    <span class="timeline-date">Nov 2025 - Jan 2026</span>
+                    <h3 class="timeline-title">Java Developer Intern</h3>
+                    <div class="timeline-subtitle">1Rivet India Ltd</div>
+                    <ul class="timeline-desc">
+                        <li>Mastered Spring Boot ecosystem (Security, JPA) and core Java.</li>
+                        <li>Built backend services and learned industry-standard coding practices.</li>
+                        <li>Worked on database optimization and API integration.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-dot"></span>
+                    <span class="timeline-date">Jan 2025 - May 2025</span>
+                    <h3 class="timeline-title">Dynamic 365 Intern</h3>
+                    <div class="timeline-subtitle">1Rivet India</div>
+                    <ul class="timeline-desc">
+                        <li>Developed and customized solutions in Dynamics 365 CE and Power Platform.</li>
+                        <li>Built custom entities, forms, and automated workflows using Power Automate.</li>
+                        <li>Collaborated on requirement gathering and UAT testing.</li>
+                        <li><strong>Tech:</strong> D365 CE, Power Platform, Dataverse, SQL, C#.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-dot"></span>
+                    <span class="timeline-date">Mar 2023 - Apr 2025</span>
+                    <h3 class="timeline-title">Team Leader</h3>
+                    <div class="timeline-subtitle">Viral Fission</div>
+                    <ul class="timeline-desc">
+                        <li>Led a team of Brand Ambassadors to execute campaigns and partnership initiatives.</li>
+                        <li>Improved team communication and ensured timely project delivery.</li>
+                        <li>Developed brand strategies to boost engagement.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="education">
+            <h2 class="section-title">Education</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <span class="timeline-dot"></span>
+                    <span class="timeline-date">Jan 2021 - May 2025</span>
+                    <h3 class="timeline-title">B.Tech in Computer Engineering</h3>
+                    <div class="timeline-subtitle">Silver Oak University, Ahmedabad</div>
+                    <p style="color: var(--text-muted);">CGPA: <strong>9.58</strong></p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-dot"></span>
+                    <span class="timeline-date">Apr 2019 - May 2021</span>
+                    <h3 class="timeline-title">Higher Secondary Certificate (CBSE)</h3>
+                    <div class="timeline-subtitle">Vallabh Ashram Day Boarding School, Valsad</div>
+                    <p style="color: var(--text-muted);">Score: <strong>94.6%</strong></p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-dot"></span>
+                    <span class="timeline-date">Apr 2017 - Mar 2019</span>
+                    <h3 class="timeline-title">Senior Secondary Certificate (CBSE)</h3>
+                    <div class="timeline-subtitle">Vallabh Ashram Day Boarding School, Valsad</div>
+                    <p style="color: var(--text-muted);">Score: <strong>90.8%</strong></p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="project-grid">
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Fintech Wallet Application</h3>
+                        <ion-icon name="wallet-outline" style="font-size: 1.5rem; color: var(--accent-primary);"></ion-icon>
+                    </div>
+                    <span class="project-tech">Java 17 • Spring Boot 3 • Spring Security • Quartz Scheduler • MySQL</span>
+                    <p style="color: var(--text-muted); line-height: 1.6;">
+                        A production-grade digital wallet built from scratch. Features secure user authentication (JWT), 
+                        transaction management, scheduled recurring payments using Quartz, and robust error handling. 
+                        Focused on secure financial logic.
+                    </p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Hotel Management System</h3>
+                        <ion-icon name="business-outline" style="font-size: 1.5rem; color: var(--accent-secondary);"></ion-icon>
+                    </div>
+                    <span class="project-tech">Dynamics 365 • Power Apps • Dataverse • JavaScript • Web API</span>
+                    <p style="color: var(--text-muted); line-height: 1.6;">
+                        Designed a comprehensive system to streamline hotel operations including bookings, housekeeping, 
+                        and customer feedback. Leveraged Microsoft Power Platform for automation and custom workflows 
+                        to improve operational efficiency.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Get In Touch</h2>
+            <p style="color: var(--text-muted); margin-bottom: 40px; font-size: 1.1rem;">
+                I am always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+            </p>
+            
+            <a href="mailto:palakavlani03@gmail.com" class="btn-resume" style="background: transparent; border: 2px solid var(--accent-primary);">
+                Say Hello <ion-icon name="paper-plane-outline" style="vertical-align: middle; margin-left: 5px;"></ion-icon>
+            </a>
+            
+            <div style="margin-top: 80px; text-align: center; color: var(--text-muted); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px;">
+                <p>Designed & Built by Palak Avlani © 2026</p>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>
