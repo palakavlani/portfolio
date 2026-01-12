@@ -65,15 +65,19 @@
             box-shadow: var(--glow);
         }
 
+        /* THE NEW MONOGRAM AVATAR */
         .profile-img {
             width: 100%; height: 100%;
             border-radius: 50%;
-            background-color: #1a1a2e;
-            /* Aesthetic 3D Girl Avatar */
-            background-image: url('https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'); 
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(to bottom right, #2d1b4e, #0f0518);
             border: 4px solid var(--bg-sidebar);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Italiana', serif;
+            font-size: 3.5rem;
+            color: var(--text-main);
+            text-shadow: 0 0 10px var(--accent-secondary);
         }
 
         .sidebar h2 { 
@@ -284,7 +288,7 @@
 
     <aside class="sidebar">
         <div class="profile-img-box">
-            <div class="profile-img"></div>
+            <div class="profile-img">PA</div>
         </div>
         <h2>Palak Avlani</h2>
         <p>Java Backend Developer</p>
@@ -413,119 +417,3 @@
                     <h3 class="timeline-title">Java Developer Intern</h3>
                     <div class="timeline-subtitle">1Rivet India Ltd</div>
                     <ul class="timeline-desc">
-                        <li>Mastered Spring Boot ecosystem (Security, JPA) and core Java.</li>
-                        <li>Built backend services and learned industry-standard coding practices.</li>
-                        <li>Worked on database optimization and API integration.</li>
-                    </ul>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <span class="timeline-date">Jan 2025 - May 2025</span>
-                    <h3 class="timeline-title">Dynamic 365 Intern</h3>
-                    <div class="timeline-subtitle">1Rivet India</div>
-                    <ul class="timeline-desc">
-                        <li>Developed and customized solutions in Dynamics 365 CE and Power Platform.</li>
-                        <li>Built custom entities, forms, and automated workflows using Power Automate.</li>
-                        <li>Collaborated on requirement gathering and UAT testing.</li>
-                        <li><strong>Tech:</strong> D365 CE, Power Platform, Dataverse, SQL, C#.</li>
-                    </ul>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <span class="timeline-date">Mar 2023 - Apr 2025</span>
-                    <h3 class="timeline-title">Team Leader</h3>
-                    <div class="timeline-subtitle">Viral Fission</div>
-                    <ul class="timeline-desc">
-                        <li>Led a team of Brand Ambassadors to execute campaigns and partnership initiatives.</li>
-                        <li>Improved team communication and ensured timely project delivery.</li>
-                        <li>Developed brand strategies to boost engagement.</li>
-                    </ul>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="education">
-            <h2 class="section-title">Education</h2>
-            <div class="timeline">
-                
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <span class="timeline-date">Jan 2021 - May 2025</span>
-                    <h3 class="timeline-title">B.Tech in Computer Engineering</h3>
-                    <div class="timeline-subtitle">Silver Oak University, Ahmedabad</div>
-                    <p style="color: var(--text-muted);">CGPA: <strong>9.58</strong></p>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <span class="timeline-date">Apr 2019 - May 2021</span>
-                    <h3 class="timeline-title">Higher Secondary Certificate (CBSE)</h3>
-                    <div class="timeline-subtitle">Vallabh Ashram Day Boarding School, Valsad</div>
-                    <p style="color: var(--text-muted);">Score: <strong>94.6%</strong></p>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <span class="timeline-date">Apr 2017 - Mar 2019</span>
-                    <h3 class="timeline-title">Senior Secondary Certificate (CBSE)</h3>
-                    <div class="timeline-subtitle">Vallabh Ashram Day Boarding School, Valsad</div>
-                    <p style="color: var(--text-muted);">Score: <strong>90.8%</strong></p>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="projects">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="project-grid">
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Fintech Wallet Application</h3>
-                        <ion-icon name="wallet-outline" style="font-size: 1.5rem; color: var(--accent-primary);"></ion-icon>
-                    </div>
-                    <span class="project-tech">Java 17 • Spring Boot 3 • Spring Security • Quartz Scheduler • MySQL</span>
-                    <p style="color: var(--text-muted); line-height: 1.6;">
-                        A production-grade digital wallet built from scratch. Features secure user authentication (JWT), 
-                        transaction management, scheduled recurring payments using Quartz, and robust error handling. 
-                        Focused on secure financial logic.
-                    </p>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Hotel Management System</h3>
-                        <ion-icon name="business-outline" style="font-size: 1.5rem; color: var(--accent-secondary);"></ion-icon>
-                    </div>
-                    <span class="project-tech">Dynamics 365 • Power Apps • Dataverse • JavaScript • Web API</span>
-                    <p style="color: var(--text-muted); line-height: 1.6;">
-                        Designed a comprehensive system to streamline hotel operations including bookings, housekeeping, 
-                        and customer feedback. Leveraged Microsoft Power Platform for automation and custom workflows 
-                        to improve operational efficiency.
-                    </p>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2 class="section-title">Get In Touch</h2>
-            <p style="color: var(--text-muted); margin-bottom: 40px; font-size: 1.1rem;">
-                I am always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
-            </p>
-            
-            <a href="mailto:palakavlani03@gmail.com" class="btn-resume" style="background: transparent; border: 2px solid var(--accent-primary);">
-                Say Hello <ion-icon name="paper-plane-outline" style="vertical-align: middle; margin-left: 5px;"></ion-icon>
-            </a>
-            
-            <div style="margin-top: 80px; text-align: center; color: var(--text-muted); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px;">
-                <p>Designed & Built by Palak Avlani © 2026</p>
-            </div>
-        </section>
-
-    </main>
-</body>
-</html>
