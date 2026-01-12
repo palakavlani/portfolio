@@ -3,308 +3,325 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Palak Avlani | The Developer</title>
-    
+    <title>Palak Avlani | Java Developer</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --bg-dark: #0a0118; /* Deep dark violet/black */
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-white: #ffffff;
-            --text-gray: #a1a1aa;
-            
-            /* The "Bold/Girly" Gradient Palette */
-            --gradient-1: linear-gradient(135deg, #ec4899, #8b5cf6); /* Pink to Purple */
-            --gradient-text: linear-gradient(to right, #f472b6, #c084fc, #22d3ee);
-            --neon-glow: 0 0 20px rgba(236, 72, 153, 0.3);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-white);
-            font-family: 'Space Grotesk', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            /* Subtle animated grain background */
-            background-image: radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.15), transparent 25%),
-                              radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.15), transparent 25%);
-        }
-
-        /* --- THE BENTO GRID LAYOUT --- */
-        .bento-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(3, auto);
-            gap: 15px;
-            width: 100%;
-            max-width: 1100px;
-            height: auto;
-        }
-
-        /* --- GENERIC CARD STYLES --- */
-        .card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 25px;
-            backdrop-filter: blur(12px);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            border-color: rgba(236, 72, 153, 0.5);
-            transform: translateY(-2px);
-            box-shadow: var(--neon-glow);
-        }
-
-        /* --- CARD SPECIFICS --- */
-
-        /* 1. HERO (Name & Bio) - Spans 2 cols, 2 rows */
-        .hero-card {
-            grid-column: span 2;
-            grid-row: span 2;
-            justify-content: space-between;
-            background: linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0));
-        }
-
-        .hero-title h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            line-height: 1;
-            margin-bottom: 10px;
-            background: var(--gradient-text);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-tag {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #f472b6; /* Hot Pink */
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .hero-bio {
-            color: var(--text-gray);
-            font-size: 1.05rem;
-            line-height: 1.6;
-        }
-
-        /* 2. PHOTO/AVATAR - Spans 1 col, 1 row */
-        .photo-card {
-            grid-column: span 1;
-            grid-row: span 2;
-            background-size: cover;
-            background-position: center;
-            /* Placeholder Gradient until you add a pic */
-            background-image: var(--gradient-1); 
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-        }
-        
-        /* If you have a photo, uncomment below and change URL */
-        /* .photo-card { background-image: url('./assets/images/palak.png'); } */
-
-        .photo-overlay {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            text-align: center;
-        }
-
-        /* 3. TECH STACK - Spans 1 col, 2 rows */
-        .stack-card {
-            grid-column: span 1;
-            grid-row: span 2;
-        }
-        .stack-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 15px;
-        }
-        .tech-pill {
-            background: rgba(255,255,255,0.08);
-            padding: 8px 15px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border: 1px solid transparent;
-        }
-        .tech-pill:hover {
-            border-color: #22d3ee; /* Cyan */
-            background: rgba(34, 211, 238, 0.1);
-        }
-
-        /* 4. PROJECT SPOTLIGHT - Spans 2 cols */
-        .project-card {
-            grid-column: span 2;
-            background: linear-gradient(to right, rgba(20, 0, 40, 0.8), rgba(60, 10, 80, 0.6));
-        }
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .status-dot {
-            height: 10px; width: 10px;
-            background-color: #22c55e; /* Green */
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 10px #22c55e;
-        }
-
-        /* 5. RESUME & SOCIALS - Smaller boxes */
-        .action-card {
-            grid-column: span 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-        
-        .resume-btn {
-            background: var(--text-white);
-            color: #000;
-        }
-        .resume-btn:hover {
-            background: #f472b6; /* Pink hover */
-            color: #fff;
-        }
-
-        .social-card {
-            grid-column: span 1;
-            font-size: 2rem;
-            flex-direction: row;
-            gap: 20px;
-            justify-content: center;
-            align-items: center;
-        }
-        .social-link { color: var(--text-white); transition: 0.2s; }
-        .social-link:hover { color: #22d3ee; transform: scale(1.1); }
-
-
-        /* --- RESPONSIVE MOBILE --- */
-        @media (max-width: 900px) {
-            .bento-container {
-                display: flex;
-                flex-direction: column;
-            }
-            .hero-card { min-height: 400px; }
-            .photo-card { min-height: 300px; }
-            .hero-title h1 { font-size: 3rem; }
-        }
-
-    </style>
-</head>
-<body>
-
-    <div class="bento-container">
-
-        <div class="card hero-card">
-            <div>
-                <div class="hero-tag">The Architect</div>
-                <div class="hero-title">
-                    <h1>Palak<br>Avlani.</h1>
-                </div>
-            </div>
-            <div class="hero-bio">
-                <p>
-                    <strong>Java Backend Developer</strong> with a passion for logic and aesthetics. 
-                    I don't just write code; I design systems that are scalable, secure, and seamless.
-                    Currently building high-performance financial tech.
-                </p>
-            </div>
-        </div>
-
-        <div class="card photo-card">
-            <div class="photo-overlay">
-                <p style="font-family: 'Playfair Display'; font-style: italic;">"She Believed She Could"</p>
-            </div>
-        </div>
-
-        <div class="card stack-card">
-            <h3 style="color: var(--text-gray); font-size: 0.9rem; text-transform: uppercase;">My Arsenal</h3>
-            <div class="stack-list">
-                <div class="tech-pill">
-                    <ion-icon name="logo-java" style="color:#f89820"></ion-icon> Java Core & Advanced
-                </div>
-                <div class="tech-pill">
-                    <ion-icon name="leaf" style="color:#6db33f"></ion-icon> Spring Boot 3
-                </div>
-                <div class="tech-pill">
-                    <ion-icon name="server" style="color:#00758f"></ion-icon> MySQL / SQL
-                </div>
-                <div class="tech-pill">
-                    <ion-icon name="lock-closed" style="color:#f472b6"></ion-icon> Spring Security
-                </div>
-                <div class="tech-pill">
-                    <ion-icon name="code-slash" style="color:#a855f7"></ion-icon> REST APIs
-                </div>
-                <div class="tech-pill">
-                    <ion-icon name="git-branch" style="color:#f1502f"></ion-icon> Git & GitHub
-                </div>
-            </div>
-        </div>
-
-        <div class="card project-card">
-            <div class="project-header">
-                <h3 style="font-size: 1.5rem; font-family: 'Playfair Display';">Fintech Wallet App</h3>
-                <span style="font-size: 0.8rem; background: rgba(34, 197, 94, 0.2); color: #22c55e; padding: 5px 10px; border-radius: 20px;">
-                    <span class="status-dot"></span> In Progress
-                </span>
-            </div>
-            <p style="color: var(--text-gray); font-size: 0.9rem; margin-bottom: 15px;">
-                A production-grade digital wallet built from scratch. Features secure user authentication (JWT), transaction management, and automated scheduling.
-            </p>
-            <div style="display: flex; gap: 10px; margin-top: auto;">
-                <span class="tech-pill" style="font-size: 0.75rem;">Spring Boot</span>
-                <span class="tech-pill" style="font-size: 0.75rem;">Quartz Scheduler</span>
-                <span class="tech-pill" style="font-size: 0.75rem;">Security</span>
-            </div>
-        </div>
-
-        <a href="./assets/resume.pdf" download="Palak_Avlani_Resume" class="card action-card resume-btn">
-            Download Resume <ion-icon name="arrow-down-outline" style="margin-left: 10px;"></ion-icon>
-        </a>
-
-        <div class="card social-card">
-            <a href="https://www.linkedin.com/in/palak-avlani-0652b123a/" target="_blank" class="social-link">
-                <ion-icon name="logo-linkedin"></ion-icon>
-            </a>
-            <a href="mailto:palakavlani03@gmail.com" class="social-link">
-                <ion-icon name="mail-outline"></ion-icon>
-            </a>
-            <a href="tel:+919499728047" class="social-link">
-                <ion-icon name="call-outline"></ion-icon>
-            </a>
-        </div>
-
-    </div>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+    <style>
+        /* --- 1. THEME VARIABLES --- */
+        :root {
+            --bg-body: #050511;       /* Almost Black/Purple */
+            --bg-sidebar: #0a0a1a;    /* Slightly lighter */
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --accent-primary: #d946ef; /* Fuchsia / Hot Pink */
+            --accent-secondary: #8b5cf6; /* Violet */
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-glass: 1px solid rgba(255,255,255,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- 2. SIDEBAR (The distinct feature of that template) --- */
+        .sidebar {
+            width: 300px;
+            height: 100vh;
+            background: var(--bg-sidebar);
+            border-right: var(--border-glass);
+            position: fixed;
+            top: 0; left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            z-index: 100;
+        }
+
+        .profile-img-box {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            padding: 3px; /* Border width */
+            margin-bottom: 20px;
+        }
+
+        .profile-img {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            background-color: #000; /* Placeholder color */
+            background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'); /* Aesthetic Placeholder */
+            background-size: cover;
+            background-position: center;
+            border: 3px solid var(--bg-sidebar);
+        }
+
+        .sidebar h2 { font-size: 1.5rem; margin-bottom: 5px; }
+        .sidebar p { color: var(--accent-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin-bottom: 30px; }
+
+        .nav-menu { width: 100%; }
+        .nav-item {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: 0.3s;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+        .nav-item:hover, .nav-item.active {
+            background: rgba(217, 70, 239, 0.1);
+            color: var(--accent-primary);
+        }
+        .nav-item ion-icon { margin-right: 10px; vertical-align: middle; }
+
+        .social-row { margin-top: auto; display: flex; gap: 15px; }
+        .social-row a { color: var(--text-muted); font-size: 1.2rem; transition: 0.3s; }
+        .social-row a:hover { color: var(--accent-primary); transform: translateY(-3px); }
+
+        /* --- 3. MAIN CONTENT AREA --- */
+        .main-content {
+            margin-left: 300px; /* Offset for sidebar */
+            flex: 1;
+            padding: 60px 80px;
+        }
+
+        section { margin-bottom: 100px; }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            font-family: 'Playfair Display', serif;
+        }
+        .section-title::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 60px; height: 3px;
+            background: var(--accent-primary);
+        }
+
+        /* Hero Styling */
+        .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; }
+        .hero-span {
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .typewriter {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            border-right: 2px solid var(--accent-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 3s steps(30, end) forwards, blink 0.75s step-end infinite;
+        }
+
+        /* Timeline (Education/Exp) */
+        .timeline { position: relative; border-left: 2px solid rgba(255,255,255,0.1); margin-left: 10px; padding-left: 30px; }
+        .timeline-item { margin-bottom: 40px; position: relative; }
+        .timeline-dot {
+            width: 16px; height: 16px; background: var(--accent-primary);
+            border-radius: 50%; position: absolute; left: -39px; top: 5px;
+            box-shadow: 0 0 10px var(--accent-primary);
+        }
+        .timeline-date { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px; display: block; }
+        .timeline-title { font-size: 1.2rem; margin-bottom: 10px; }
+        .timeline-text { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+        /* Cards Grid (Skills & Projects) */
+        .grid-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        
+        .card {
+            background: var(--bg-card);
+            border: var(--border-glass);
+            padding: 25px;
+            border-radius: 16px;
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent-primary); }
+
+        .tech-tag {
+            display: inline-block; padding: 5px 12px; border-radius: 20px;
+            font-size: 0.75rem; background: rgba(255,255,255,0.1); margin-right: 5px; margin-top: 10px;
+        }
+
+        .btn-resume {
+            display: inline-block; padding: 12px 30px; background: var(--accent-primary); color: #fff;
+            border-radius: 30px; text-decoration: none; font-weight: 600; margin-top: 20px;
+            box-shadow: 0 5px 20px rgba(217, 70, 239, 0.3); transition: 0.3s;
+        }
+        .btn-resume:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(217, 70, 239, 0.5); }
+
+        /* Animations */
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink { 50% { border-color: transparent } }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; padding: 20px; flex-direction: row; justify-content: space-between; border-bottom: var(--border-glass); border-right: none; }
+            .profile-img-box { width: 50px; height: 50px; margin-bottom: 0; }
+            .sidebar h2, .sidebar p, .nav-menu { display: none; } /* Hide menu on mobile header for cleanliness */
+            .social-row { display: none; } /* Hide socials on mobile header */
+            .main-content { margin-left: 0; padding: 40px 20px; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="profile-img-box">
+            <div class="profile-img"></div>
+        </div>
+        <h2>Palak Avlani</h2>
+        <p>Java Developer</p>
+
+        <nav class="nav-menu">
+            <a href="#home" class="nav-item active"><ion-icon name="home-outline"></ion-icon> Home</a>
+            <a href="#about" class="nav-item"><ion-icon name="person-outline"></ion-icon> About</a>
+            <a href="#resume" class="nav-item"><ion-icon name="school-outline"></ion-icon> Resume</a>
+            <a href="#portfolio" class="nav-item"><ion-icon name="layers-outline"></ion-icon> Projects</a>
+            <a href="#contact" class="nav-item"><ion-icon name="mail-outline"></ion-icon> Contact</a>
+        </nav>
+
+        <div class="social-row">
+            <a href="https://www.linkedin.com/in/palak-avlani-0652b123a/" target="_blank"><ion-icon name="logo-linkedin"></ion-icon></a>
+            <a href="mailto:palakavlani03@gmail.com"><ion-icon name="mail-outline"></ion-icon></a>
+            <a href="#"><ion-icon name="logo-github"></ion-icon></a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <section id="home" class="hero">
+            <h1>Hi, I'm <span class="hero-span">Palak.</span></h1>
+            <div class="typewriter">I build scalable Backend Systems.</div>
+            
+            <p style="margin-top: 30px; color: var(--text-muted); max-width: 600px; line-height: 1.7;">
+                I am a Java Developer who believes in <strong>understanding concepts</strong> over mugging them up. 
+                I design efficient databases and secure APIs, striving for perfection in every line of code.
+            </p>
+
+            <a href="./assets/resume.pdf" class="btn-resume" download>
+                Download Resume <ion-icon name="arrow-down-outline" style="vertical-align: middle;"></ion-icon>
+            </a>
+        </section>
+
+        <section id="about">
+            <h2 class="section-title">My Arsenal</h2>
+            <div class="grid-box">
+                <div class="card">
+                    <ion-icon name="code-slash-outline" style="font-size: 2rem; color: var(--accent-primary); margin-bottom: 15px;"></ion-icon>
+                    <h3>Java Backend</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">
+                        Proficient in <strong>Java Core</strong>, Multithreading, and Collections. I write clean, type-safe logic.
+                    </p>
+                </div>
+                <div class="card">
+                    <ion-icon name="leaf-outline" style="font-size: 2rem; color: var(--accent-secondary); margin-bottom: 15px;"></ion-icon>
+                    <h3>Spring Boot 3</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">
+                        Building robust REST APIs, Microservices, and implementing Spring Security (JWT/OAuth2).
+                    </p>
+                </div>
+                <div class="card">
+                    <ion-icon name="server-outline" style="font-size: 2rem; color: #22d3ee; margin-bottom: 15px;"></ion-icon>
+                    <h3>Database Design</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">
+                        Expertise in MySQL & SQL. Designing normalized schemas and optimizing queries for performance.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="resume">
+            <h2 class="section-title">Journey</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <span class="timeline-dot"></span>
+                    <span class="timeline-date">2024 - Present</span>
+                    <h3 class="timeline-title">Java Developer</h3>
+                    <p class="timeline-text">
+                        Focused on backend engineering, system design, and building production-grade financial applications. 
+                        Continuously learning Microservices and Docker.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-dot"></span>
+                    <span class="timeline-date">2021 - 2024</span>
+                    <h3 class="timeline-title">BCA (Bachelor of Computer Applications)</h3>
+                    <p class="timeline-text">
+                        Graduated with distinction. Built strong foundations in Object-Oriented Programming, Data Structures, and Database Management Systems.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="portfolio">
+            <h2 class="section-title">Featured Project</h2>
+            <div class="grid-box">
+                <div class="card" style="border-color: var(--accent-primary);">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <h3>Fintech Wallet App</h3>
+                        <ion-icon name="wallet-outline" style="font-size: 1.5rem; color: var(--accent-primary);"></ion-icon>
+                    </div>
+                    <p style="color: var(--text-muted); margin-top: 15px; line-height: 1.6;">
+                        A complete digital wallet solution built from scratch. 
+                        Users can create accounts, transfer funds securely, and view transaction history.
+                    </p>
+                    <div style="margin-top: 20px;">
+                        <span class="tech-tag">Java 17</span>
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Quartz Scheduler</span>
+                    </div>
+                </div>
+
+                <div class="card" style="opacity: 0.5;">
+                    <h3>Upcoming Project...</h3>
+                    <p style="color: var(--text-muted); margin-top: 15px;">
+                        Currently exploring Microservices architecture for a new e-commerce backend system.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Get In Touch</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px;">
+                I am currently looking for new opportunities. Whether you have a question or just want to say hi, my inbox is always open!
+            </p>
+            
+            <a href="mailto:palakavlani03@gmail.com" class="btn-resume" style="background: transparent; border: 2px solid var(--accent-primary);">
+                Say Hello <ion-icon name="paper-plane-outline" style="vertical-align: middle; margin-left: 5px;"></ion-icon>
+            </a>
+            
+            <div style="margin-top: 50px; font-size: 0.9rem; color: var(--text-muted);">
+                <p>Designed & Built by Palak Avlani.</p>
+            </div>
+        </section>
+
+    </main>
 </body>
 </html>
